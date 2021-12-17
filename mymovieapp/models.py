@@ -9,3 +9,14 @@ class Users(models.Model):
 
     class Meta:
         db_table = "user"
+
+class Movies(models.Model):
+    id = models.AutoField(primary_key=True)
+    moviename = models.CharField(max_length=16)
+    gnere = models.CharField(max_length=16)
+    year = models.IntegerField(default=2000)
+    actors = models.CharField(max_length=16)
+    duration = models.CharField(max_length=16)
+    rating = models.FloatField(default=0)
+    class Meta:
+        db_table = "movies"

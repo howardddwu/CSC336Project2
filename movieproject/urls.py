@@ -18,5 +18,8 @@ from django.urls import path
 from mymovieapp import views
 urlpatterns = [
     #path('admin/', admin.site.urls),
-    path('',views.index)
+    path('',views.login, name='login'),
+    path('main',views.dologin, name="dologin"),
+    path('signup',views.signup, name="signup"),
+    path('signup/update',views.accUpdate, name="accUpdate"),
 ]
