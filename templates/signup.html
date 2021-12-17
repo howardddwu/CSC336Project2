@@ -1,0 +1,15 @@
+<title>
+    Sign Up
+</title>
+<a href="{% url 'login' %}"> Login </a>
+<br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/>
+<center>
+<form action="{% url 'accUpdate' %}" method="POST">
+    {% csrf_token %}
+    <h2>Sign Up</h2>
+    username:  <input type="text" name = 'username'><br/><br/>
+    password:  <input type="password" name = 'password'><br/><br/>
+    <button type="submit">Sign Up</button><br/><br/>
+</form>
+</center>
