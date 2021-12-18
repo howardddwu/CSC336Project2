@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mymovieapp',
+    'mymovieapp.apps.MymovieappConfig',
+    "users.apps.UsersConfig",
+    "crispy_forms",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -79,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'movieproject',
         'USER':'root',
-        "PASSWORD":'root',
+        "PASSWORD":'',
         'HOST':'localhost',
         'PORT':'3306',
     }
@@ -105,6 +108,12 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# Log in Redirect
+
+
+LOGIN_REDIRECT_URL = 'main-home'
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -122,7 +131,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
