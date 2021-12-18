@@ -8,5 +8,23 @@ import json
 def get_now_playing():
     url = f"https://api.themoviedb.org/3/movie/now_playing?api_key=a1a16aff683f4bbbe45ce2192602ce09&language=en-US&page=1"
     r = requests.get(url)
-    return json.loads(r.text)
+    results = json.loads(r.text)["results"]
 
+    movies = []
+    for m in results:
+        movie_id = m["id"]
+        title = m["title"]
+        overview = m["overview"]
+        poster = m["poster_path"]
+        image = f"https://image.tmdb.org/t/p/w342{poster}"
+        movie = {
+            "movie_id": movie_id,
+            "title": title,
+            "overview": overview,
+            "image": image
+        }
+        movies.append(movie)
+    
+    return movies
+
+# print(get_now_playing())
