@@ -1,0 +1,43 @@
+{% extends "mymovieapp/base.html" %} {% block content %}
+
+<main class="page">
+  
+  <section class='about'>
+  <div class="container-wrapper text-center">
+    <div class="about-title mb-3">
+        <h1>Now Playing Movies</h1>
+      </div>
+    </div>
+  </section>
+  
+  <section class="movies-container">
+    <div class="tags-container">
+      
+    </div>
+
+    <div class="movies-list">
+
+      {% for movie in movies %}
+        <!-- single movie -->
+        <a href="{% url 'movie-detail' movie_id=movie.movie_id %}" class="movie">
+          <img
+            src="{{ movie.image }}"
+            class="img movie-img"
+            alt="">
+          <h5>{{ movie.title }}</h5>
+          <p>{{ movie.overview }}}}</p>
+        </a> -->
+        <!-- end of single movie -->
+      {% endfor %}
+
+
+    </div>
+
+  </section>
+</main>
+<!-- end of main -->
+
+<!-- <script src="./js/app.js"></script> -->
+
+    
+{% endblock content %}

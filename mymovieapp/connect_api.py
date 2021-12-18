@@ -1,21 +1,12 @@
 import requests
 import pandas as pd
+import json
 # import requests
 
-API_KEY = 'a1a16aff683f4bbbe45ce2192602ce09'
+# API_KEY = 'a1a16aff683f4bbbe45ce2192602ce09'
 
-data = pd.DataFrame()
-for i in range(1,473):
-    response = requests.get(f"https://api.themoviedb.org/3/movie/top_rated?api_key={API_KEY}&language=en-US&page={i}")
-    temp_df = pd.DataFrame(response.json()["results"])[[   
-        'id',
-        'title',
-        'overview', 
-        'backdrop_path', 
-        'poster_path', 
-        'release_date', 
-        'vote_average'
-    ]]
-    data = data.append(temp_df, ignore_index=True)
+def get_now_playing():
+    url = f"https://api.themoviedb.org/3/movie/now_playing?api_key=a1a16aff683f4bbbe45ce2192602ce09&language=en-US&page=1"
+    r = requests.get(url)
+    return json.loads(r.text)
 
-data.to_csv("movie_data.csv", index=False)

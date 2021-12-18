@@ -67,10 +67,11 @@
   
       <div class="movies-list">
         {% for movie in movies %}
+        {% with "https://image.tmdb.org/t/p/w342"}
           <!-- single movie -->
           <a href="{% url 'movie-detail' movie_id=movie.movie_id %}" class="movie">
             <img
-              src="{{ movie.image }}"
+              src={{ f"https://image.tmdb.org/t/p/w342{movie.backdrop_path}" }}
               class="img movie-img"
               alt="">
             <h5>{{ movie.title }}</h5>
