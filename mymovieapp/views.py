@@ -3,6 +3,7 @@ from django.utils import html
 from requests.api import get
 from .models import Movies
 from .connect_api import get_now_playing
+from mymovieapp import connect_api
 
 def home(request):
     return render(request, "mymovieapp/index.html")
@@ -22,15 +23,7 @@ def search(request):
         return render(request, "mymovieapp/search.html", {})
 
 def now_playing(request):
-    movies = []
-    for movie in get_now_playing()["results"]:
-        movies["movie_id"] = movie["id"]
-        movies["title"] = movie["title"]
-        movies["overview"] = movie["overview"]
-        poster = movie["poster_path"]
-        movies["image"] = f"https://image.tmdb.org/t/p/w342{poster}"
-        movies.append(movie)
-
+    movies = get_now_playing()
 
     return render(
         request, "mymovieapp/now_playing.html", {"movies": movies} 
