@@ -1,7 +1,11 @@
 # from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import redirect, render
+from django.http.response import HttpResponseRedirect
+from django.shortcuts import get_object_or_404, redirect, render
+
+from mymovieapp.models import Movies
 
 from .forms import ProfileUpdateForm, UserRegisterForm, UserUpdateForm
 
@@ -38,3 +42,26 @@ def profile(request):
 
     context = {"u_form": u_form, "p_form": p_form}
     return render(request, "users/profile.html", context)
+
+
+@login_required
+def favorite_list(request):
+    new = Movies._default_manager.filter(favorites=request.user)
+    backdrops = [f"https://image.tmdb.org/t/p/w342{m.backdrop_path}" for m in new]
+    context = zip(new, backdrops)
+    return render(request, 'users/favorites.html', {'context': context})
+
+
+@login_required
+def favorite_add(request, movie_id):
+    movie = get_object_or_404(Movies, movie_id=movie_id)
+    if movie.favorites.filter(id=request.user.id).exists():
+        movie.favorites.remove(request.user)
+    else:
+        movie.favorites.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def watch_add(request, id):
+    pass

@@ -1,32 +1,46 @@
-<!-- {% extends "mymovieapp/base.html" %} {% block content %}
+{% extends "mymovieapp/base.html" %} {% block content %}
 <div class="movie-page">
-    <section class="movie-hero">
-      <img
-        src="{{ info.image }}"
-        class="img movie-hero-img"
-        alt="">
-     <!-- <img src="./images/bg1.jpg" class="img movie-hero-img" />
-      <article class="movie-info">
-        <h2>{{ info.title }}</h2>
+  <!-- <div class="col-md-7 d-flex justify-content-between"></div> -->
+    <section> <!-- class="movie-hero" -->
+      <img src="{{ backdrop }}" class="img movie-hero-img" alt="backdrop">
+      <img src="{{ poster }}" class="img movie-hero-img" alt="poster">
+
+      {% if request.user.is_authenticated %}
+
+      {% if fav %}
+      <a href="{% url 'favorite_list' %}" class="btn btn-outline-info">Remove Favorites</a>
+      {% else %}
+      <a href="" class="btn btn-outline-info">Add to watch list</a>
+      <a href="{% url 'favorite_add' movie.movie_id %}" class="btn btn-outline-info">Add to favorites list</a>
+      {% endif %}
+
+      {% else %}
+
+      <a href="{% url 'register' %}" class="btn btn-outline-info">Add to watch list</a>
+      <a href="{% url 'register' %}" class="btn btn-outline-info">Add to favorites list</a>
+      {% endif %}
+      <article class="movie"> <!-- -info-->
+        <h2>{{ movie }}</h2>
         <!-- <img
-        src="{{ info.image }}"
+        src="{{ image }}"
         class="img movie-img"
-        alt="">
+        alt=""> -->
         <br>
-        {{ summary }}
+        {{ movie.overview }}
+        <br>
         <div class="movie-icons">
           <article>
-            <h5>prep time</h5>
-            <p>{{ info.time }} minutes</p>
+            <h5>release date</h5>
+            <p>{{ movie.release_date }}</p>
           </article>
           <article>
-            <h5>servings</h5>
-            <p>{{ info.servings }}</p>
+            <h5>rating</h5>
+            <p>{{ movie.rating }}</p>
           </article>
-          <article>
+          <!-- <article>
             <h5>calories</h5>
             <p>{{ info.calories }}</p>
-          </article>
+          </article> -->
         </div>
         <!-- <div class="movie-nutrition">
           <article>
@@ -44,9 +58,9 @@
           <article>  
             <h6>Protein</h6>
             <p>6 servings</p>
-          </article> -->
+          </article>
 
-        <!-- </div>
+        </div>
         <p class="movie-tags">
           <ul id="horizontal-list">
             Keywords : 
@@ -55,14 +69,14 @@
             <li>Milk</li>
           </ul>
           
-        </p> -->
-      <!-- </article>
-    </section>
+        </p>
+      </article>
+    </section> -->
     <!-- content -->
     <!-- <section class="movie-content">
       <article>
         <h4>Instructions</h4>
-        <!-- single instruction
+        single instruction
         {% for step in steps %}
         <div class="single-instruction">
           <header>
@@ -74,7 +88,7 @@
           </p>
         </div>
         {% endfor %}
-        <!-- end of single instruction
+        end of single instruction
       </article>
       <article class="second-column">
         <div>
@@ -90,7 +104,7 @@
           {% endfor %}
         </div>
       </article>
-    </section>
+    </section> -->
 </div>
 
-{% endblock content %}  {% block team-members %}{% endblock team-members %} -->
+{% endblock content %}

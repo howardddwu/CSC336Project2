@@ -20,13 +20,13 @@
     <link rel="stylesheet" href="{% static 'main/main.css' %}" />
     <link rel="stylesheet" href="{% static 'main/search-bar.css' %}" />
 
-    <title>Movie Database Client</title>
+    <title>Movie Database Project</title>
   </head>
   <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'main-home' %}">Movie Database Project</a>
+          <a class="navbar-brand mr-4" href="{% url 'movie-home' %}">Movie Database Project</a>
           <button
             class="navbar-toggler"
             type="button"
@@ -40,14 +40,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'main-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'main-nowplaying' %}">Now Playing</a>
-              <a class="nav-item nav-link" href="#">Popular</a>
-              <a class="nav-item nav-link" href="{% url 'main-search' %}">Search</a>
+              <a class="nav-item nav-link" href="{% url 'movie-home' %}">Home</a>
+              <a class="nav-item nav-link" href="{% url 'nowplaying' %}">Now Playing</a>
+              <a class="nav-item nav-link" href="{% url 'popular' %}">Popular</a>
+              <a class="nav-item nav-link" href="{% url 'movie-search' %}">Search</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
               {% if user.is_authenticated %}
+              <a class="nav-item nav-link" href="{% url 'favorite_list' %}">Favorites</a>
               <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
               <a class="nav-item nav-link" href="{% url 'profile' %}"
                 >Profile</a
@@ -78,9 +79,6 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-8 col-sm-12">
-            <h6 class="text-uppercase font-weight-bold">
-              Additional Information
-            </h6>
             <p>CSC 33600 - Database Systems | Project 2</p>
           </div>
     </footer>

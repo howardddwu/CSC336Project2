@@ -5,7 +5,7 @@
   <section class='about'>
   <div class="container-wrapper text-center">
     <div class="about-title mb-3">
-        <h1>Now Playing Movies</h1>
+        <h1>Favorites List</h1>
       </div>
     </div>
   </section>
@@ -15,18 +15,22 @@
       
     </div>
 
-    <div class="movies-list">
+    <div > 
+        <!-- class="movies-list" -->
 
-      {% for movie in movies %}
+        {% for movie, backdrop in context %}
         <!-- single movie -->
         <a href="{% url 'movie-detail' movie_id=movie.movie_id %}" class="movie">
           <img
-            src="{{ movie.image }}"
+            src="{{ backdrop }}"
             class="img movie-img"
             alt="">
-          <h5>{{ movie.title }}</h5>
+          <h5>{{ movie }}</h5>
           <p>{{ movie.overview }}</p>
         </a>
+        <div>
+            <a href="{% url 'favorite_add' movie.movie_id %}" class="btn btn-outline-info">Remove from favorites list</a>
+        </div>
         <!-- end of single movie -->
       {% endfor %}
 
