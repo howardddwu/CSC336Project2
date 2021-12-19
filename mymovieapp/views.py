@@ -14,9 +14,9 @@ def search(request):
         movies = Movies.objects.filter(
             title__icontains=searched
         )
-        backdrops = [f"https://image.tmdb.org/t/p/w342{m.backdrop_path}" for m in movies]
+        posters = [f"https://image.tmdb.org/t/p/w342{m.poster_path}" for m in movies]
 
-        context = zip(movies, backdrops)
+        context = zip(movies, posters)
 
         return render(
             request, "mymovieapp/search.html", {"searched": searched, "context": context}
@@ -45,10 +45,13 @@ def single_movie(request, movie_id):
     poster = f"https://image.tmdb.org/t/p/w342{movie.poster_path}"
 
     fav = bool
+    watch = bool
 
     if movie.favorites.filter(id=request.user.id).exists():
         fav = True
+    if movie.watchlist.filter(id=request.user.id).exists():
+        watch = True
 
     return render(
-        request, "mymovieapp/single-movie.html", {"movie": movie, "backdrop": backdrop, "poster": poster, "fav": fav}
+        request, "mymovieapp/single-movie.html", {"movie": movie, "backdrop": backdrop, "poster": poster, "fav": fav, "watch": watch}
     )

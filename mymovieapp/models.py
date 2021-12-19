@@ -22,6 +22,9 @@ class Movies(models.Model):
     favorites = models.ManyToManyField(
         User, related_name='favorite', default=None, blank=True
     )
+    watchlist = models.ManyToManyField(
+        User, related_name='watch', default=None, blank=True
+    )
     
     def __str__(self):
         return self.title

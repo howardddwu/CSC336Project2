@@ -44,15 +44,15 @@
         <br/>
   
       <div class="movies-list">
-        {% for movie, backdrop in context %}
+        {% for movie, poster in context %}
           <!-- single movie -->
           <a href="{% url 'movie-detail' movie_id=movie.movie_id %}" class="movie">
             <img
-              src="{{ backdrop }}"
+              src="{{ poster }}"
               class="img movie-img"
               alt="">
             <h5>{{ movie }}</h5>
-            <p>{{ movie.overview }}</p>
+            <!-- <p>{{ movie.overview }}</p> -->
           </a>
           <!-- end of single movie -->
         {% endfor %}

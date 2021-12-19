@@ -15,8 +15,8 @@ def get_movie_list(list_name):
         movie_id = m["id"]
         title = m["title"]
         overview = m["overview"]
-        backdrop = m["backdrop_path"]
-        image = f"https://image.tmdb.org/t/p/w342{backdrop}"
+        poster = m["poster_path"]
+        image = f"https://image.tmdb.org/t/p/w342{poster}"
         movie = {
             "movie_id": movie_id,
             "title": title,
